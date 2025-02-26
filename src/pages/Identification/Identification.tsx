@@ -5,7 +5,10 @@ import { IoDownloadOutline } from "react-icons/io5";
 import { api } from "../../api";
 import "./Identification.scss";
 import { useNavigate } from "react-router-dom";
-import { TeacherContext } from "../../context/TeacherContext";
+import {
+   TeacherContext,
+   TeacherContextType,
+} from "../../context/TeacherContext";
 
 type IdImage = { id: number; imgId: number; faceImgId: number };
 
@@ -17,13 +20,12 @@ interface IGetImage {
 }
 
 const Identification: React.FC = () => {
-   const { setMenu } = React.useContext(TeacherContext);
-   // const [base64Image, setBase64Image] = useState<string>("");
+   const { setMenu } = React.useContext(TeacherContext) as TeacherContextType;
    const [id, setId] = React.useState<string>("");
    const videoRef = useRef<HTMLVideoElement>(null);
    const [isEnabled, setIsEnabled] = useState<boolean>(false);
    const canvasRef = useRef<HTMLCanvasElement>(null);
-   const [imageUrl, setImageUrl] = useState<File | undefined>();
+   // const [setImageUrl] = useState<File | undefined>();
    const navigate = useNavigate();
 
    const startVideo = async () => {
@@ -95,7 +97,6 @@ const Identification: React.FC = () => {
             };
 
             const file = base64ToFile(imageUrl, "photo.png");
-            setImageUrl(file);
 
             // Автоматически отправляем фото на сервер
             handleOnSubmit(file);
@@ -157,7 +158,6 @@ const Identification: React.FC = () => {
          const response = await api("v1/teacher/face/list/" + id);
          const data: IGetImage = await response.json();
          localStorage.setItem("url", JSON.stringify(data.data[0].imgId));
-         // console.log(data.data[0].imgId);
       } catch (err) {
          console.log(err);
       }

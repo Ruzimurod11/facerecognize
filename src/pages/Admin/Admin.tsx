@@ -2,7 +2,6 @@ import React from "react";
 import "./Admin.scss";
 import uploadArea from "../../assets/upload_area.png";
 import { api } from "../../api";
-import { SiPanasonic } from "react-icons/si";
 
 interface FormState {
    id?: number;
@@ -12,11 +11,6 @@ interface FormState {
    pinfl: string;
    degree: string;
    position: string;
-}
-
-interface FormImage {
-   teacherId: number;
-   file: string;
 }
 
 const Admin: React.FC = () => {

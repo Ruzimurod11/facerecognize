@@ -4,7 +4,6 @@ import Identification from "./pages/Identification/Identification";
 import Home from "./pages/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import TeacherContextProvider from "./context/TeacherContext";
-import React from "react";
 
 function App() {
    return (
